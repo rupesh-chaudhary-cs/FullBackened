@@ -8,6 +8,6 @@ app.use(cors({
     credentials:true,
 }))
 
-app.use()
+app.use(express.json({limit:"16kb"}))  /* when data will come from form like a user enter all his information and submit it than it will reach to the backened database and it will work as middleware*/
 
 export default app;
