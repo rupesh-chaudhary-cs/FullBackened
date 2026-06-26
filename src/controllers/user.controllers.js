@@ -1,10 +1,12 @@
 import { ApiError } from "../utils/ApiError.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
+
 const userRegister=asyncHandler(async (req,res)=>{
-    res.status(200).json({
-        message:"ok",
-        name:"RUPESH KUMAR CHAUDHARY ",
+    // res.status(200).json({
+    //     message:"ok",
+    //     name:"RUPESH KUMAR CHAUDHARY ",
 
     //get user details from frontened
     //validation-no field should be empty
@@ -19,7 +21,7 @@ const userRegister=asyncHandler(async (req,res)=>{
 
 
 
-    })
+    // })
     
     const {userName,password,email,fullName}=req.body
     console.log("email:",email)
@@ -68,6 +70,28 @@ const userRegister=asyncHandler(async (req,res)=>{
     if(!coverImageLocalPath){
         throw new ApiError(400,"CoverImage is required")
     }
+
+    const avatar=await uploadOnCloudinary(avatarLocalPath)
+    const coverImage=await uploadOnCloudinary(coverImageLocalPath)
+
+
+    if(!avatar){
+        throw new ApiError(400,"Avatar is required")
+    }
+
+    if(!coverImage){
+        throw new ApiError(400,"CoverImage is required")
+    }
+
+    const user=await User.create({
+        fullName,
+        avatar:avatar.url,
+        coverImage:coverImage.url,
+        userName,
+        password,
+        userName:userName.toLowerCase();
+
+    })
 })
 
 export {userRegister}
