@@ -4,8 +4,10 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/Apiresponse.js";
 import { response } from "express";
-
+console.log("everything is not fine")
 const userRegister=asyncHandler(async (req,res)=>{
+
+    console.log("everything is fine")
     // res.status(200).json({
     //     message:"ok",
     //     name:"RUPESH KUMAR CHAUDHARY ",
@@ -61,7 +63,7 @@ const userRegister=asyncHandler(async (req,res)=>{
     // if(existedEmail){
     //     throw new ApiError(409,"email already exists enter the new one")
     // }
-
+    console.log(req.files)
     const avatarLocalPath=req.files?.avatar[0]?.path;
     const coverImageLocalPath=req.files?.coverImage[0]?.path;
 
@@ -90,7 +92,8 @@ const userRegister=asyncHandler(async (req,res)=>{
         avatar:avatar.url,
         coverImage:coverImage.url,
         password,
-        userName:userName.toLowerCase()
+        userName:userName.toLowerCase(),
+        email,
 
     })
 
