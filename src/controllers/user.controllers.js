@@ -382,7 +382,7 @@ const changeCoverImageOrAvatar=asyncHandler(async(req,res)=>{
      //complete it its main aim is to allow user to change their coverImage or avatar
 })
 
-const userChannelProfile=asyncHandler(async(req,res)=>{
+const userChannelProfile=asyncHandler(async(req,res)=>{  //this means we are visiting to another person channel 
     const {username} =req.params
     console.log(req.params)
     if(!username?.trim()){
