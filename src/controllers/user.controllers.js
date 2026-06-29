@@ -383,7 +383,7 @@ const changeCoverImageOrAvatar=asyncHandler(async(req,res)=>{
 })
 
 const userChannelProfile=asyncHandler(async(req,res)=>{  //this means we are visiting to another person channel 
-    const {username} =req.params
+    const {username} =req.params            //see this controller is built so that any logged in user on youtube can view other person profile and see everything
     console.log(req.params)
     if(!username?.trim()){
         throw new ApiError(400,"username doesnot exist")
@@ -392,7 +392,7 @@ const userChannelProfile=asyncHandler(async(req,res)=>{  //this means we are vis
     const channel=await User.aggreagate([
         {
             $match:{
-                username:username.toLowerCase(),
+                userName:username.toLowerCase(),
             }
         },
         {
