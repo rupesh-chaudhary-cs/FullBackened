@@ -459,7 +459,7 @@ const userChannelProfile=asyncHandler(async(req,res)=>{  //this means we are vis
         new ApiResponse(201,channel[0],"data fetched successfully..")
     )
 })
-//see one important thing you can set the value of the attributes as well by the help of $set method of mongodb,and using this method:findbyid and update
+//see one important thing you can set the value of the attributes as well by the help of $set method of mongodb,and using this method:findbyid and update 
 
 
 export {userRegister,
