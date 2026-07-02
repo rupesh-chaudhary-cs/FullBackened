@@ -1,4 +1,4 @@
-import { TokenExpiredError } from "jsonwebtoken";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 import mongoose,{mongo, Schema} from "mongoose";
 
 const commentSchema=new mongoose.Schema({
@@ -6,18 +6,18 @@ const commentSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
-    video:[
+    video:
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:"Video"
         }
-    ],
-    tweet:[
+    ,
+    tweet:
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:"Tweet"
         }
-    ],
+    ,
     content:{
         type:String,
         required:true
@@ -26,5 +26,6 @@ const commentSchema=new mongoose.Schema({
 },
 {timestamps:true})
 
+commentSchema.plugin(mongooseAggregatePaginate)
 
 export const Comment=mongoose.model("Comment",commentSchema)

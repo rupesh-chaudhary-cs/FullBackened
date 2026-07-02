@@ -2,18 +2,18 @@ import mongoose,{Schema} from "mongoose";
 
 
 const likesSchema=new mongoose.Schema({
-    video:[[{
+    video:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Video"
-    }]],
-    comment:[{
+    },
+    comment:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Comment"
-    }],
-    tweet:[{
+    },
+    tweet:{
         type:mongoose.Schema.Types.ObjectId,   //if you dont want to create this than you can leave this field
         ref:"Tweet"
-    }],
+    },
     owner:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
